@@ -5,17 +5,8 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid2 from '@mui/material/Grid2';
+import DataTest from "./SearchFunctionality"
 
-const Item= styled(Paper)(({ theme }) => ({
-  backgroundColor: '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(4),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-  ...theme.applyStyles('dark', {
-    backgroundColor: '#1A2027',
-  }),
-}));
 
 
 export default function Home() {
@@ -29,36 +20,91 @@ export default function Home() {
       <main>
 
       <Box sx={{ width: '50%' }}>
-        <Grid2 container  spacing={1}>
-          <Grid2 container size={2}>
-            <Item>1</Item>
-            <Item>2</Item>
+        <Grid2 container spacing={1} >
+          <Grid2 container direction="row">
+            <div style={
+              {width: 300}
+            }>
+              <p>1</p>
+            </div>
+            <div style={
+              {width: 300}
+            }>
+              <p>2</p>
+            </div>
           </Grid2>
-          <Grid2 container size={2}>
-            <Item>3</Item>
-            <Item>4</Item>
+          <Grid2 container direction="row">
+          <div style={
+              {width: 300}
+            }>
+              <p>3</p>
+            </div>
+            <div style={
+              {width: 300}
+            }>
+              <p>4</p>
+            </div>
           </Grid2>
-          <Grid2 container size={2}>
-            <Item>5</Item>
-            <Item>6</Item>
+          <Grid2 container direction="row">
+          <div style={
+              {width: 300}
+            }>
+              <p>5</p>
+            </div>
+            <div style={
+              {width: 300}
+            }>
+              <p>6</p>
+            </div>
           </Grid2>
-          <Grid2 container size={2}>
-            <Item>7</Item>
-            <Item>8</Item>
+          <Grid2 container direction="row">
+          <div style={
+              {width: 300}
+            }>
+              <p>7</p>
+            </div>
+            <div style={
+              {width: 300}
+            }>
+              <p>8</p>
+            </div>
           </Grid2>
-          <Grid2 container size={2}>
-            <Item>9</Item>
-            <Item>10</Item>
+          <Grid2 container direction="row">
+          <div style={
+              {width: 300}
+            }>
+              <p>9</p>
+            </div>
+            <div style={
+              {width: 300}
+            }>
+              <p>10</p>
+            </div>
           </Grid2>
-          <Grid2 container size={2}>
-            <Item>11</Item>
-            <Item>12</Item>
+          <Grid2 container direction="row">
+          <div style={
+              {width: 300}
+            }>
+              <p>11</p>
+            </div>
+            <div style={
+              {width: 300}
+            }>
+              <p>12</p>
+            </div>
           </Grid2>
         </Grid2>
       </Box>
 
+
+      <input>
+      </input>
+      <button>
+        Search
+      </button>
       </main>
 
+      <DataTest></DataTest>
       <footer>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
