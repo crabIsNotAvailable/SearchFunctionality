@@ -1,24 +1,32 @@
-import { Grid2 } from "@mui/material";
-import * as React from 'react';
+import * as React from "react";
 import data from "/Users/marti/Documents/nextjs-mui-grid/nextjs-blog/pages/mockup_data.json";
-
-const arrayData = data
-
-function getArrayItem() {
-    
-    arrayData.forEach((Kundegruppe) => {
-        
-        console.log(Kundegruppe["Avdrag betalt"])
-    })
-}
+import { useState } from "react";
 
 export default function DataTest() {
-    const stringifiedData = JSON.stringify(data, null, 2);
+    const [searchQuery, setSearchQuery] = useState(""); 
+
+    function getArrayItem() {
+        console.log("Data:", data);
+    
+        const matchingItems = data.filter((item) => {
+            // Convert the object to a string to include all fields in the search
+            const itemString = JSON.stringify(item).toLowerCase();
+            return itemString.includes(searchQuery.toLowerCase());
+        });
+    
+        console.log("Matching Items:", matchingItems);
+    }
+    
 
     return (
         <div>
-            <input class="hallo"></input>
-            <button onClick={getArrayItem}> Search</button>
+            <input
+                type="text"
+                value={searchQuery} 
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search..."
+            />
+            <button onClick={getArrayItem}>Search</button>
         </div>
     );
-};
+}
