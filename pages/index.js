@@ -1,15 +1,26 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid2 from '@mui/material/Grid2';
-import DataTest from "./SearchFunctionality"
+import { useState } from "react";
+import { Grid2 } from '@mui/material';
+import { getArrayItem } from "./SearchFunctionality"
+import Grid2DisplayData from "./GridDataDisplay"
 
 
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredData, setFilteredDatas] = useState([]);
+
+  function handleSearch() {
+    const matchingItems = getArrayItem(searchQuery);
+  
+    const flatItems = Array.isArray(matchingItems[0]) ? matchingItems.flat() : matchingItems;
+  
+    setFilteredDatas(flatItems); // Store the flat array.
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -20,91 +31,21 @@ export default function Home() {
       <main>
 
       <Box sx={{ width: '50%' }}>
-        <Grid2 container spacing={1} >
-          <Grid2 container direction="row">
-            <div style={
-              {width: 300}
-            }>
-              <p>1</p>
-            </div>
-            <div style={
-              {width: 300}
-            }>
-              <p>2</p>
-            </div>
-          </Grid2>
-          <Grid2 container direction="row">
-          <div style={
-              {width: 300}
-            }>
-              <p>3</p>
-            </div>
-            <div style={
-              {width: 300}
-            }>
-              <p>4</p>
-            </div>
-          </Grid2>
-          <Grid2 container direction="row">
-          <div style={
-              {width: 300}
-            }>
-              <p>5</p>
-            </div>
-            <div style={
-              {width: 300}
-            }>
-              <p>6</p>
-            </div>
-          </Grid2>
-          <Grid2 container direction="row">
-          <div style={
-              {width: 300}
-            }>
-              <p>7</p>
-            </div>
-            <div style={
-              {width: 300}
-            }>
-              <p>8</p>
-            </div>
-          </Grid2>
-          <Grid2 container direction="row">
-          <div style={
-              {width: 300}
-            }>
-              <p>9</p>
-            </div>
-            <div style={
-              {width: 300}
-            }>
-              <p>10</p>
-            </div>
-          </Grid2>
-          <Grid2 container direction="row">
-          <div style={
-              {width: 300}
-            }>
-              <p>11</p>
-            </div>
-            <div style={
-              {width: 300}
-            }>
-              <p>12</p>
-            </div>
-          </Grid2>
+        <Grid2 container spacing={1}>
+          <Grid2DisplayData filteredDatas={filteredData}></Grid2DisplayData>
         </Grid2>
       </Box>
+    </main>
 
-
-      <input>
-      </input>
-      <button>
-        Search
-      </button>
-      </main>
-
-      <DataTest></DataTest>
+      <div>
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search..."
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
       <footer>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
