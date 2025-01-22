@@ -4,10 +4,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { useState } from "react";
 import { Grid2 } from '@mui/material';
-import { getArrayItem } from "./SearchFunctionality"
-import Grid2DisplayData from "./GridDataDisplay"
-
-
+import { getArrayItem } from "./SearchFunctionality";
+import Grid2DisplayData from "./GridDataDisplay";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,10 +13,15 @@ export default function Home() {
 
   function handleSearch() {
     const matchingItems = getArrayItem(searchQuery);
-  
     const flatItems = Array.isArray(matchingItems[0]) ? matchingItems.flat() : matchingItems;
-  
     setFilteredDatas(flatItems); // Store the flat array.
+  }
+
+  // Function to handle key down events in the search input
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
   }
 
   return (
@@ -29,23 +32,33 @@ export default function Home() {
       </Head>
 
       <main>
+        <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
+          <div style={{ position: 'fixed', top: '20px', zIndex: 1000 }}>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Search..."
+              style={{ padding: '10px', borderRadius: '5px', marginRight: '10px', border: '1px solid #ccc' }} // Add padding, border radius, and margin
+            />
+            <button 
+              onClick={handleSearch} 
+              style={{ padding: '10px 20px', borderRadius: '5px', border: '1px solid #ccc', cursor: 'pointer' }} 
+              onMouseDown={(e) => e.currentTarget.style.backgroundColor = '#ddd'} 
+              onMouseUp={(e) => e.currentTarget.style.backgroundColor = ''} 
+            >
+              Search
+            </button> 
+          </div>
+          <Box sx={{ width: '100%', marginTop: '30px', minHeight: 'calc(100vh - 80px)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Grid2 container spacing={1}>
+              <Grid2DisplayData filteredDatas={filteredData}></Grid2DisplayData>
+            </Grid2>
+          </Box>
+        </Box>
+      </main>
 
-      <Box sx={{ width: '50%' }}>
-        <Grid2 container spacing={1}>
-          <Grid2DisplayData filteredDatas={filteredData}></Grid2DisplayData>
-        </Grid2>
-      </Box>
-    </main>
-
-      <div>
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search..."
-        />
-        <button onClick={handleSearch}>Search</button>
-      </div>
       <footer>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"

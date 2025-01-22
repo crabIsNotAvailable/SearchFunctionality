@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/SearchFunctionality.ts", "pages/GridDataDisplay.js"  ],
+, "pages/SearchFunctionality.ts", "pages/GridDataDisplay.tsx"  ],
   "exclude": [
     "node_modules"
   ]
