@@ -30,6 +30,7 @@ function transformData(data: any): ClientDetailProps[] {
     Termingebyr: item.Termingebyr,
     Utestående: item.Utestående,
     Etablering: item.Etablering,
+    LoanID: item["Loan-ID"]
   }));
 }
 

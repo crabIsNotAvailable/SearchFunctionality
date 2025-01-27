@@ -2,28 +2,29 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { useState } from "react";
 import { Grid2 } from '@mui/material';
-import { getArrayItem } from "./SearchFunctionality";
+
+import { useState, useEffect } from 'react';
+import dataUser from './mockup_data_person.json';
 import Grid2DisplayData from "./GridDataDisplay";
+import SearchField from './SearchField';
+import { userDetailsTransformed } from './SearchFunctionality';
+
 
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState("");
+
+  
   const [filteredData, setFilteredDatas] = useState([]);
+  
+  const [transformedUserData, setTransformedUserData] = useState([]);
 
-  function handleSearch() {
-    const matchingItems = getArrayItem(searchQuery);
-    const flatItems = Array.isArray(matchingItems[0]) ? matchingItems.flat() : matchingItems;
-    setFilteredDatas(flatItems); // Store the flat array.
-  }
+  useEffect(() => {
+    const transformed = userDetailsTransformed(dataUser);
+    console.log("Transformed User Data:", transformed); // Debug
+    setTransformedUserData(transformed);
+  }, []);
 
-  // Function to handle key down events in the search input
-  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === 'Enter') {
-      handleSearch();
-    }
-  }
-
+  console.log("filtered dAta:", filteredData)
   return (
     <div className={styles.container}>
       <Head>
@@ -32,28 +33,36 @@ export default function Home() {
       </Head>
 
       <main>
-        <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
-          <div style={{ position: 'fixed', top: '20px', zIndex: 1000 }}>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Search..."
-              style={{ padding: '10px', borderRadius: '5px', marginRight: '10px', border: '1px solid #ccc' }} // Add padding, border radius, and margin
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "100vh",
+          }}
+        >
+          <div style={{ position: "fixed", top: "20px", zIndex: 1000 }}>
+            <SearchField
+              setFilteredData={setFilteredDatas}
+              transformedData={transformedUserData} // Pass full data here
+              transformedUserData={transformedUserData}
             />
-            <button 
-              onClick={handleSearch} 
-              style={{ padding: '10px 20px', borderRadius: '5px', border: '1px solid #ccc', cursor: 'pointer' }} 
-              onMouseDown={(e) => e.currentTarget.style.backgroundColor = '#ddd'} 
-              onMouseUp={(e) => e.currentTarget.style.backgroundColor = ''} 
-            >
-              Search
-            </button> 
           </div>
-          <Box sx={{ width: '100%', marginTop: '30px', minHeight: 'calc(100vh - 80px)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
+          <Box
+            sx={{
+              width: "100%",
+              marginTop: "30px",
+              minHeight: "calc(100vh - 80px)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <Grid2 container spacing={1}>
-              <Grid2DisplayData filteredDatas={filteredData}></Grid2DisplayData>
+              <Grid2DisplayData filteredDatas={filteredData} />
             </Grid2>
           </Box>
         </Box>

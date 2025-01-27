@@ -15,5 +15,7 @@ export default interface ClientDetailProps {
     Termingebyr: number;
     Utestående: number;
     Etablering: number;
+    LoanID: string;
 }
+
 
