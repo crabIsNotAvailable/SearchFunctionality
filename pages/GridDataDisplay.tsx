@@ -80,9 +80,7 @@ const Grid2DisplayData: React.FC<Grid2DisplayDataProps> = ({ filteredDatas }) =>
             {openIndexes[index] && (
               Object.entries(element).map(([key, value], subIndex, array) => (
                 <React.Fragment key={`${index}-${subIndex}`}>
-                  <div style={{ display: 'flex', 
-                    borderBottom: '1px solid #ccc', 
-                    padding: '10px 0' }}>
+                  <div style={{ display: 'flex', borderBottom: subIndex !== array.length - 1 ? '1px solid #ccc' : 'none', padding: '10px 0' }}>
                     {/* Grid item for key */}
                     <Grid2 item xs={6} style={{ width: 200 }}>
                       <p style={{ fontWeight: 'bold' }}>{key}:</p>
