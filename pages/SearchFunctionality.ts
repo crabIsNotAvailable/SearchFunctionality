@@ -47,39 +47,39 @@ const transformedUserData = userDetailsTransformed(data)
 
 // const transformedDataUser = transformUserData(dataUser)
 
-export function getArrayItem(searchQuery: string) {
-  console.log("Search Query:", searchQuery);
+// export function getArrayItem(searchQuery: string) {
+//   console.log("Search Query:", searchQuery);
 
-  // Search UserDataProps for matches in PersonNumber or LoanID
-  const userMatches = transformedUserData.filter((user) => {
-    const personNumberMatch = user.PersonNumber.toString().includes(searchQuery);
-    let loanIdMatch = false;
+//   // Search UserDataProps for matches in PersonNumber or LoanID
+//   const userMatches = transformedUserData.filter((user) => {
+//     const personNumberMatch = user.PersonNumber.toString().includes(searchQuery);
+//     let loanIdMatch = false;
   
-    // Your logic for checking LoanID or other fields
+//     // Your logic for checking LoanID or other fields
   
-    // Make sure this is the condition that logs the result
-    if (personNumberMatch || loanIdMatch) {
-      return true;
-    }
+//     // Make sure this is the condition that logs the result
+//     if (personNumberMatch || loanIdMatch) {
+//       return true;
+//     }
   
-    return false;
-  });
+//     return false;
+//   });
   
-  console.log("User Matches:", userMatches);
+//   console.log("User Matches:", userMatches);
   
 
-  // Extract all matched LoanIDs from users
-  const matchingLoanIDs = userMatches.map((user) => user.LoanID).flat();
+//   // Extract all matched LoanIDs from users
+//   const matchingLoanIDs = userMatches.map((user) => user.LoanID).flat();
 
-  // Use the matched LoanIDs to filter ClientDetailProps
-  const clientMatches = transformedData.filter((loan) =>
-    matchingLoanIDs.includes(loan.LoanID)
-  );
+//   // Use the matched LoanIDs to filter ClientDetailProps
+//   const clientMatches = transformedData.filter((loan) =>
+//     matchingLoanIDs.includes(loan.LoanID)
+//   );
 
-  console.log("Client Matches:", clientMatches);
+//   console.log("Client Matches:", clientMatches);
 
-  return clientMatches; // Return the filtered client data
-}
+//   return clientMatches; // Return the filtered client data
+// }
 
 
 
