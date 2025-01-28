@@ -93,7 +93,7 @@ const Grid2DisplayData: React.FC<Grid2DisplayDataProps> = ({ filteredDatas }) =>
             {openIndexes[index] &&
               Object.entries(element)
                 .filter(([key]) => key !== 'LoanID') // Exclude LoanID
-                .map(([key, value], subIndex, array) => (
+                .map(([key, value], subIndex) => (
                   <React.Fragment key={`${index}-${subIndex}`}>
                     <div
                       style={{
