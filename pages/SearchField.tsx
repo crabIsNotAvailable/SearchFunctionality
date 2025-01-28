@@ -56,10 +56,8 @@ export default function SearchField({ setFilteredData, transformedUserData, tran
   
     // Filter UserDataProps based on the search query
     const filteredUserData = transformedUserData.filter((user) => {
-      const personNumberMatch = user.PersonNumber.toString().includes(searchQuery);
-      const loanIdMatch = user.LoanID.some((id) =>
-        id.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      const personNumberMatch = user.PersonNumber.toString().startsWith(searchQuery); // Match from start of PersonNumber
+      const loanIdMatch = user.LoanID.toLowerCase().startsWith(searchQuery.toLowerCase()); // Match from start of LoanID
       return personNumberMatch || loanIdMatch;
     });
   
