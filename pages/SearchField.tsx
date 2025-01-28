@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import { styled } from '@mui/system';
 import useAutocomplete from '@mui/material/useAutocomplete';
-import { getArrayItem } from './SearchFunctionality';
 import ClientDetailProps from './MockData';
 import UserDataProps from './MockDataUser';
 
