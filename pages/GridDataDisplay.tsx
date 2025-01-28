@@ -90,13 +90,15 @@ const Grid2DisplayData: React.FC<Grid2DisplayDataProps> = ({ filteredDatas }) =>
               <p>{openIndexes[index] ? '▲' : '▼'}</p>
             </div>
             <Grid2 container>
-              {openIndexes[index] &&
-                Object.entries(element).map(([key, value], subIndex, array) => (
+            {openIndexes[index] &&
+              Object.entries(element)
+                .filter(([key]) => key !== 'LoanID') // Exclude LoanID
+                .map(([key, value], subIndex, array) => (
                   <React.Fragment key={`${index}-${subIndex}`}>
                     <div
                       style={{
                         display: 'flex',
-                        borderBottom: subIndex !== array.length - 1 ? '1px solid #ccc' : 'none',
+                        borderBottom: '1px solid #ccc',
                         padding: '10px 0',
                       }}
                     >
